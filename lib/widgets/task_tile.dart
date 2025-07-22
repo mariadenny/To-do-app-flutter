@@ -16,22 +16,33 @@ class TaskTile extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Checkbox(
-        value: isDone, 
-        onChanged: onChanged, 
-        activeColor: Theme.of(context).primaryColor,),
-      title: Text(
-        taskName,
-        style: TextStyle(
-          fontSize: 16,
-          decoration: isDone? TextDecoration.lineThrough : null,
-        ),
-      ),
-      trailing: IconButton(
-        onPressed: onDelete, 
-        icon: Icon(Icons.delete,color:const Color.fromARGB(255, 191, 0, 0))),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 6),
+      child: Container(
+        decoration: BoxDecoration(
+          
+          borderRadius: BorderRadius.circular(5),),
+          child: ListTile(
+            leading: Checkbox(
+              value: isDone, 
+              onChanged: onChanged, 
+              activeColor: Theme.of(context).primaryColor,),
+          title: Text(
+            taskName,
+            style: TextStyle(
+              fontSize: 16,
+              decoration: isDone? TextDecoration.lineThrough : null,
+            ),
+          ),
+          trailing: IconButton(
+            onPressed: onDelete, 
+            icon: Icon(Icons.delete,color:const Color.fromARGB(129, 0, 0, 0))
+          ),
+          )
+      )
     );
-    
   }
 }
+
+          
+   

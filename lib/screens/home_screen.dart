@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:todoapp/widgets/task_tile.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,20 +11,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Map<String, dynamic>> taskList = [
-    {'name': 'Buy Milk', 'isDone': false},
-    {'name':"go to college","isDone":true}
-  ];
-
-  void toggleTask(int index, bool? value) {
+  final mybox =Hive.box("mybox");
+    void toggleTask(int index,bool? value) {
+    var current=mybox.getAt(index);
+    current[1]=value;
     setState(() {
-      taskList[index]['isDone'] = value!;
+      mybox.putAt(index, current);
     });
   }
 
   void deleteTask(int index) {
     setState(() {
-      taskList.removeAt(index);
+      mybox.deleteAt(index);
     });
   }
 
@@ -52,10 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               if (newTaskName.trim().isNotEmpty) {
                 setState(() {
-                  taskList.add({
-                    'name': newTaskName,
-                    'isDone': false,
-                  });
+                  mybox.add([newTaskName,false]);
                 });
               }
               Navigator.of(context).pop(); // Close dialog
@@ -72,18 +69,35 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("TO DO LIST")),
-      body: ListView.builder(
-        itemCount: taskList.length,
+      appBar: AppBar(
+        title: Text("TO DO LIST"),
+        backgroundColor: const Color.fromARGB(255, 255, 204, 0),
+        foregroundColor: Colors.white,
+      ),
+      body: Stack(children: [
+        Container(
+          decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets\\background_image.jpg"),
+            fit: BoxFit.cover,
+            opacity: 0.8,
+            ),
+          ),
+        ),
+      ListView.builder(
+        itemCount: mybox.length,
         itemBuilder: (context, index) {
+          var task=mybox.getAt(index);
           return TaskTile(
-            taskName: taskList[index]['name'],
-            isDone: taskList[index]['isDone'],
+            taskName: task[0],
+            isDone: task[1],
             onChanged: (value) => toggleTask(index, value),
             onDelete: () => deleteTask(index),
           );
         },
-      ),
+      )
+      ]),
+  
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           addTaskDialog();

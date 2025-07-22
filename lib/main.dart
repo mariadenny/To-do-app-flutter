@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:todoapp/screens/home_screen.dart';
 
-void main() {
+void main() async{
+  await Hive.initFlutter();
+  var box= await Hive.openBox("mybox");
   runApp(const MyApp());
 }
 
@@ -15,8 +18,9 @@ class MyApp extends StatelessWidget {
       title: "TO DO APP",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.pink,
-        scaffoldBackgroundColor: const Color.fromARGB(255, 255, 163, 194),
+        primarySwatch: Colors.yellow,
+        
+        scaffoldBackgroundColor: const Color.fromARGB(255, 255, 253, 145),
         textTheme: const TextTheme(
           headlineLarge: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
           headlineMedium: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
@@ -26,9 +30,12 @@ class MyApp extends StatelessWidget {
           bodySmall: TextStyle(fontSize: 8),
           
         ),
+        
+
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Colors.pink,
-          foregroundColor: Colors.white,
+          backgroundColor:const Color.fromARGB(255, 255, 204, 0),
+          foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+          
         )
       ),
       //color: const Color.fromARGB(255, 255, 152, 221),
