@@ -1,16 +1,36 @@
-# todoapp
+# 📝 My To-Do App
 
-A new Flutter project.
+A simple and beautiful To-Do app made using Flutter.  
+It helps you add, complete, and delete tasks easily with a clean UI and local storage.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Features
 
-A few resources to get you started if this is your first Flutter project:
+- Add new tasks  
+- Mark tasks as completed  
+- Delete tasks  
+- Saves tasks using Hive (local storage)  
+- Soft blue-green to lime yellow theme  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠 Built With
+
+- Flutter  
+- Dart  
+- Hive  
+- Hive Flutter  
+- Path Provider  
+
+---
+
+## 🚀 Getting Started
+
+To run the app locally:
+
+```bash
+git clone https://github.com/yourusername/my_todo_app.git
+cd my_todo_app
+flutter pub get
+flutter run
