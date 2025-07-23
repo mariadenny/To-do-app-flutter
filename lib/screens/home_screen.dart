@@ -73,6 +73,8 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text("TO DO LIST"),
         backgroundColor: const Color.fromARGB(255, 255, 204, 0),
         foregroundColor: Colors.white,
+        elevation: 4, 
+        shadowColor: Colors.black.withOpacity(0.3),
       ),
       body: Stack(children: [
         Container(
